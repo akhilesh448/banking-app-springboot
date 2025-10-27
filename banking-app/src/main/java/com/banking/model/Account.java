@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -14,15 +15,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "accounts")
 public class Account {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    int AccountNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_number")
+    Integer accountNumber;
+
     String holderName;
     int balance;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    public List<Transaction> history = new ArrayList<>();
+    List<Transaction> history = new ArrayList<>();
 
     public Account() {}
 
@@ -31,28 +35,40 @@ public class Account {
         this.balance = balance;
     }
 
-    public int getAccountNumber() {
-        return this.AccountNumber;
+    public Integer getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Integer accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getHolderName() {
-        return this.holderName;
-    }
-
-    public int getAccountBalance() {
-        return this.balance;
+        return holderName;
     }
 
     public void setHolderName(String holderName) {
         this.holderName = holderName;
     }
 
+    public int getAccountBalance() {
+        return balance;
+    }
+
     public void setBalance(int balance) {
         this.balance = balance;
     }
 
+    public List<Transaction> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<Transaction> history) {
+        this.history = history;
+    }
+
     public void displayInfo(){
-        System.out.println("Hi, "+holderName+"! your a/c no. "+AccountNumber+" has balance ₹"+balance);
+        System.out.println("Hi, "+holderName+"! your a/c no. "+accountNumber+" has balance ₹"+balance);
     }
 
     public void showHistory() {

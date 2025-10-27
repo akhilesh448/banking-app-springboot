@@ -11,7 +11,7 @@ import com.banking.model.Transaction;
 
 @RestController
 @RequestMapping("/api/transactions")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:3000")
 public class TransactionController {
     
     public static class TransactionRequest {

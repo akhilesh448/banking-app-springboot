@@ -29,11 +29,8 @@ public class AccountService {
         return null;
     }
 
-    public Account createAccount(Account account){
-        Account a = new Account();
-        a.setHolderName(account.getHolderName());
-        a.setBalance(account.getAccountBalance());
-        return accountRepository.save(a);
+   public Account createAccount(Account account){
+        return accountRepository.save(account);
     }
 
     public boolean deleteAccountByNumber(int accountNumber) {

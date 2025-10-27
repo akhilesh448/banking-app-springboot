@@ -11,7 +11,7 @@ import com.banking.model.Account;
 
 @RestController
 @RequestMapping("/api/accounts")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:3000")
 public class AccountController {
 
     private final AccountService accountService;
